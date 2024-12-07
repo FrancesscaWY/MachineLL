@@ -7,6 +7,33 @@ import numpy
 import pandas
 import tables
 import jupyter_core
+import matplotlib.font_manager as fm
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
+
+# 打印所有已加载的字体
+# for font in fm.fontManager.ttflist:
+#     print(font.name)
+import matplotlib.font_manager as fm
+
+# 查找系统中所有可用的字体
+font_paths = fm.findSystemFonts(fontpaths=None, fontext='ttf')
+
+# 查找包含 Noto Sans CJK 的字体文件
+found_fonts = [font for font in font_paths if 'NotoSansCJK' in font]
+# 打印找到的字体路径
+print(found_fonts)
+
+from matplotlib import rcParams
+rcParams['font.sans-serif'] = ['Noto Sans CJK']
+
+# 设置字体为 Noto Sans CJK
+# rcParams['font.family'] = 'sans-serif'
+# rcParams['font.sans-serif'] = ['Noto Sans CJK Regular', 'DejaVu Sans', 'Bitstream Vera Sans']
+
+# 生成一个简单的图形，查看是否能显示中文
+# plt.text(0.5, 0.5, '你好，世界', fontsize=20, ha='center')
+# plt.show()
 
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -37,6 +64,7 @@ if __name__ == '__main__':
     y_shanghai = [random.uniform(15, 18) for i in x]
     plt.figure(figsize=(20, 8), dpi=100)
     plt.plot(x, y_shanghai)
+    plt.title("上海")
     plt.show()
 #     print_hi('PyCharm')
 
